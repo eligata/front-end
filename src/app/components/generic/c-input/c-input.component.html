@@ -1,0 +1,12 @@
+<!-- Form group -->
+<div class="form-group">
+  <!-- Label -->
+  <label *ngIf='label'>{{label}}</label>
+
+  <!-- Input -->
+  <input class="form-control" [attr.type]="type ? type : 'text'" [attr.placeholder]="placeholder ? placeholder : null" [value]="value"
+    (blur)="onBlur()" #textField (keyup)="value=textField.value">
+
+  <!-- Validation Messages -->
+  <c-validation [validationSubject]="formControl"></c-validation>
+</div>  

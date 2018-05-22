@@ -1,0 +1,13 @@
+<div *ngIf="!validationSubject.valid && (validationSubject.touched || validationSubject.dirty)">
+  <span class="badge badge-danger float-right mt-1 mb-2">
+    <!-- If required then show required error message only-->
+    <div *ngIf="validationSubject.errors.required"> This is required. </div>
+
+    <!-- If not required then process other errors-->
+    <div *ngIf="!validationSubject.errors.required">
+      <div *ngIf="validationSubject.errors.email"> Invalid email. </div>
+      <div *ngIf="validationSubject.errors.minlength"> Min length is {{validationSubject.errors.minlength.requiredLength}} characters. </div>
+      <div *ngIf="validationSubject.errors.maxlength"> Max length is {{validationSubject.errors.minlength.requiredLength}} characters. </div>
+    </div>
+  </span>
+</div>

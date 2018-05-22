@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{basketProduct.product.name}}</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">'{{basketProduct.product.name}}' description</h5>
+    <p class="card-text">Price:
+      <b>{{basketProduct.product.price}} {{basketProduct.product.currency}}</b>
+    </p>
+    <form>
+      <div class="row col-md-4 float-right" *ngIf="identity.get('token') != null">
+        <div class="input-group col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text">QTY</span>
+          </div>
+          <input type="number" min="0" class="form-control" name="Quantity" placeholder="Quantity" [(ngModel)]="basketProduct.quantity">
+        </div>
+        <button (click)="addToBasket(basketProduct)" class="btn btn-outline-secondary col-md-5">Add to basket</button>
+      </div>
+    </form>
+  </div>
+</div>

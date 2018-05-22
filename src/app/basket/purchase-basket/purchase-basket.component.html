@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div *ngIf="basket">
+
+      <!-- Products -->
+      <div *ngFor="let basketItem of basket.productsInBasket" class="mt-3">
+        <app-basket-item [basketItem]="basketItem" [readOnly]="true"></app-basket-item>
+      </div>
+      <!-- Purchase or discard -->
+      <div class="card col-md-8 mt-3 mb-3 float-right" style="text-align:right">
+        <br>
+        <div>
+          Subtotal ({{basket.productsInBasket.length}} distinct item(s))
+          <hr>
+          <h3>TOTAL: {{ total | number}} </h3>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <button (click)="continueShopping()" class="btn btn-outline-secondary col-md-5">Continue shopping</button>
+            <button (click)="purchaseBasket(basket.basketId)" class="btn btn-outline-primary col-md-5">Purchase basket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div *ngIf="basket">
+
+      <!-- Empty basket -->
+      <div *ngIf="products == null || products.length == 0">
+        <div class="card mt-3">
+          <div class="card-header">
+            <h4 class="card-title">Your shopping basket is empty!</h4>
+          </div>
+          <div class="card-body">
+            You can start browsing products now by clicking 'Continue shopping'
+          </div>
+        </div>
+      </div>
+
+      <!-- Display products in basket -->
+      <div *ngFor="let basketItem of products" class="mt-3">
+        <app-basket-item [basketItem]="basketItem"></app-basket-item>
+      </div>
+
+      <!-- Purchase or discard -->
+      <div class="card col-md-8 mt-3 mb-3 float-right" style="text-align:right">
+        <br>
+        <div *ngIf="products != null && products.length > 0">
+          Subtotal ({{products.length}} distinct item(s))
+          <hr>
+          <h3>TOTAL: {{ total | number}} €</h3>
+          <hr>
+        </div>
+        <div class="row">
+          <div *ngIf="products != null && products.length > 0" class="col-md-12 mb-3">
+            <button (click)="discardBasket(basket.basketId)" class="btn btn-outline-danger col-md-5">Discard</button>
+            <button (click)="proceedToPayment(basket.basketId)" class="btn btn-outline-primary col-md-5">Proceed to payment</button>
+          </div>
+          <div class="col-md-12 mb-3">
+            <button (click)="continueShopping()" class="btn btn-outline-secondary col-md-5">Continue shopping</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

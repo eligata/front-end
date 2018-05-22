@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <b class="mt-5 mb-3"><h1>Sign In</h1></b>
+</div>
+
+
+<div class="row justify-content-center">
+  <div class="col-lg-4">
+    <!-- Login -->
+    <form [formGroup]='loginForm' (ngSubmit)='login(loginForm.value)'>
+        <c-input [formControl]="loginForm.controls.email" placeholder="Email"></c-input>
+        <c-input [formControl]="loginForm.controls.password" placeholder="Password" type="password"></c-input>
+        
+      <input type="submit" class='btn btn-block btn-outline-secondary' value="Login">
+      <small class="float-right">Need account? <a href="/signup"> Create one</a></small>
+    </form>
+  </div>
+</div>

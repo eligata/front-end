@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">'{{basketItem.product.name}}'</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <img src="./assets/img.png" width="140px">
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-12" style="text-align:right">
+            <h4>{{basketItem.product.price}} {{basketItem.product.currency}}</h4>
+          </div>
+        </div>
+
+        <!-- User can change product quantity until purchasing basket -->
+        <div *ngIf="!readOnly">
+          <div class="row">
+            <div class="col-md-12 pr-0">
+              <div class="float-right col-md-3">
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">QTY</span>
+                  </div>
+                  <input type="number" min="0" class="form-control" name="Quantity" placeholder="Quantity" [(ngModel)]="basketItem.quantity"
+                    (ngModelChange)="onChange($event)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- If user want to purchase basket than display readonly summary -->
+        <div *ngIf="readOnly" class="col-md-12 mb-5" style="text-align:right">
+            Quantity: {{basketItem.quantity}}
+          </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12" style="text-align:right">
+            <b>TOTAL: </b>
+            <strong>{{(basketItem.product.price * basketItem.quantity) | number}} {{basketItem.product.currency}}</strong>
+          </div>
+        </div>
+        <div class="row mt-1">
+          <div class="col-md-12">
+            <div *ngIf="!readOnly">
+              <button (click)="removeFromBasket(basketItem)" class="btn btn-outline-secondary mr-1 mt-1 float-right">Remove from basket</button>
+            </div>
+            <div *ngIf="canUpdateQty && !readOnly">
+              <button (click)="updateProductQuantity(basketItem)" class="btn btn-outline-primary mr-1 mt-1 float-right">Update quantity</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
